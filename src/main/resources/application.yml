@@ -1,0 +1,55 @@
+server:
+  #port: 8011
+  port: 8091
+  session:
+    timeout: 1800
+    cookie: 
+      name: SESSION
+     
+  tomcat: 
+    max-threads: 1000
+    min-spare-threads: 200
+    accept-count: 1000
+    max-connections: 1000
+   #connection-timeout: 60
+   
+ #mybatis配置
+mybatis : 
+  type-aliases-package : com.example.MySpringBoot.bean
+  mapper-locations : classpath:mapper/*Mapper.xml  
+  config-location : classpath:mapper/config/sqlMapConfig.xml 
+
+spring:
+  datasource: 
+    name: master
+    driver-class-name: com.mysql.jdbc.Driver
+    #url: jdbc:mysql://127.0.0.1:3306/yayao_wxs_db
+    url: jdbc:mysql://118.190.133.146:3306/yayao_wxs_db
+    username: root
+    #password: 147867
+    password: liliu
+  jackson: 
+    #property-naming-strategy: CAMEL_CASE_TO_LOWER_CASE_WITH_UNDERSCORES
+    date-format: yyyy-MM-dd HH:mm:ss    #显示时间
+    time-zone:  GMT+8
+  session: 
+    store-type: none
+  mvc:
+    date-format: yyyy-MM-dd HH:mm:ss     #接收时间
+    #static-path-pattern: /**   
+
+  resources: 
+    #static-locations: file:${web.upload-path}
+    static-locations: classpath:/META-INF/resources/, classpath:/resources/, classpath:/static/, classpath:/public/, file:${web.upload-path}           
+web: 
+  #upload-path:  D:/TempPic/
+  #upload-url: http://localhost:8011/
+  upload-path:  /home/default/dlg/images/
+  upload-url: http://118.190.133.146:8091/
+
+location: 
+  grant_type: client_credential
+  #appid: wx4d2cb896c1256cbe  
+  #secret: 5f3a5483468d2eec01e8fd4a8ce2b8cf
+  picType: jpg,jpeg,gif,png,bmp 
+  picSize: 300

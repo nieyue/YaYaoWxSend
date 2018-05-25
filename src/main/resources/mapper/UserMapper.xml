@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dlg.wxsend.dao.UserDao">
+	<!-- 查询表中的数据量 -->
+	<select id="getNum" resultType="java.lang.Integer">
+		select count(*) from user_tb
+	</select>
+	
+	<!-- 更新用户表中的用户状态 -->
+	<update id="updateStatus" >
+		update 
+				user_tb 
+			set 
+				status=#{status} 
+	</update>
+	
+	<!-- 根据openId和appid新用户表中的用户状态  -->
+	<update id="updateStatusByopenId" parameterType="java.lang.Object" >
+		update 
+				user_tb 
+			set 
+				status=#{status}
+			<if test="channelId!=null">
+				,channel_id=#{channelId}
+			</if>
+			where 
+				open_id=#{openId}
+			and
+				app_id=#{appid}		 
+	</update>
+	
+	<!-- 新增用户 -->
+	<insert id="addUser" parameterType="com.dlg.wxsend.bean.User">
+		insert into 
+				user_tb(
+						open_id,
+						app_id,
+						channel_id,
+						phone,
+						app_name,
+						status,
+						show_date,
+						update_date
+						)
+				values(
+						#{user.openId},
+						#{user.appId},
+						#{user.channelId},
+						#{user.phone},
+						#{user.appName},
+						#{user.status},
+						#{user.showDate},
+						#{user.updateDate})
+	</insert>
+	
+	<select id="getUser" parameterType="java.lang.String" resultType="com.dlg.wxsend.bean.User">
+		select 			
+				open_id,
+				app_id,
+				channel_id,
+				phone,
+				app_name,
+				status,
+				show_date,
+				update_date 
+		from 
+				user_tb 
+		where 
+				open_id=#{openId}
+			and 	
+				app_id=#{appid}	
+	</select>
+	
+	<!-- 分页查询用户 -->
+	<select id="getUserByPageHelper" resultType="com.dlg.wxsend.bean.User">
+		select 
+				open_id,
+				app_id,
+				channel_id,
+				phone,
+				app_name,
+				status,
+				show_date,
+				update_date
+			from
+				user_tb	
+	</select>
+</mapper>

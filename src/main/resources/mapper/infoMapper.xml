@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dlg.wxsend.dao.InfoDao">
+	<!-- 新增 -->
+	<insert id="addInfo" parameterType="com.dlg.wxsend.bean.Info">
+		insert into 
+					s_info_tb(
+								type,
+								title,
+								description,
+								s_url,
+								p_url,
+								create_date)
+						VALUES(
+								#{info.type},
+								#{info.title},
+								#{info.description},
+								#{info.sUrl},
+								#{info.pUrl},
+								#{info.createDate})
+	</insert>
+	<!-- 更新 -->
+	<update id="updateInfo" parameterType="com.dlg.wxsend.bean.Info">
+		update 
+			s_info_tb 
+		<set>
+			<if test="info.type!=null">
+			type=#{info.type},
+			</if>
+			<if test="info.title!=null">
+			title=#{info.title},
+			</if>
+			<if test="info.description!=null">
+			description=#{info.description},
+			</if>
+			<if test="info.sUrl!=null">
+			s_url=#{info.sUrl},
+			</if>
+			<if test="info.pUrl!=null">
+			p_url=#{info.pUrl},
+			</if>
+			<if test="info.createDate!=null">
+			create_date=#{info.createDate},
+			</if>
+		</set>
+		where 
+			s_id=#{info.sId}
+	</update>
+	<!-- 分页查询 -->
+	<select id="getInfo" resultType="com.dlg.wxsend.bean.Info">
+		select 
+				s_id,
+				type,
+				title,
+				description,
+				s_url,
+				p_url,
+				create_date 
+			from 
+				s_info_tb
+	</select>
+	
+</mapper>

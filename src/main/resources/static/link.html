@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>关注公众号,尽享各种乐趣</title>
+<meta content="width=device-width,
+		initial-scale=1.0,maximum-scale=1,user-scalable=no" name="viewport" />
+<script src="/js/jquery.min.js"></script>
+<link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap.min.css">
+<style type="text/css">
+.wrap{
+	max-width:640px;
+    margin: 0 auto;
+    height:100%;
+}
+@media screen and (max-width:640px){
+         .wrap{
+             width:100% !important;
+             }
+         }
+p{
+	text-align: center;
+    font-weight: 500;
+    font-size: 20px;
+    color: #777;
+    line-height:35px;
+}
+.code_pic{
+	text-align: center;
+}
+.code_pic img{
+	width:100%;
+}
+.lbl{
+	color:red;
+	text-align: center;
+}
+.car_pic{
+	position: relative;
+    margin-top: 10px;
+}
+.car_pic img{
+	width:100%;
+	height:auto;
+}
+.info{
+	margin-top: 30px;
+	position: relative;
+}
+.info p{
+	font-size: 15px;
+}
+.girls_one{
+	position: relative;
+    width: 95%;
+    left: 2.5%;
+}
+.girls_one img{
+	width:100%;
+	height:auto;
+}
+.click_code{
+	position: relative;
+	margin-top: 10px;
+}
+.click_code p{
+	font-size: 16px;
+}
+</style>
+<script type="text/javascript" src="/js/common.js"></script>
+<script >
+	var url=newsUtils.getUrl().url;
+	var data=sessionStorage.getItem('wxlogin');
+	console.log(data);
+	if(data==null){
+		$.ajax({
+			url:url+"/wx/code",
+			dataType:"json",  
+			type:"get",
+			success:function(result){
+				console.log(result.msg);
+				sessionStorage.setItem('wxlogin', 1);
+				location.replace(result.msg);
+			}
+		});
+	}    
+	/* $.ajax({
+		url:url+"/wx/code",
+		dataType:"json",  
+		type:"get",
+		success:function(result){
+			console.log(result.msg);
+			sessionStorage.setItem('wxlogin', 1);
+			location.replace(result.msg);
+		}
+	});  */
+</script>
+</head>
+<body>
+	<div class="wrap">
+		<p>
+			夜晚
+		</p>
+		<p>
+			如果</br>
+			陪伴你的
+		</p>	
+		<p>	
+			不是车水马龙的影院</br>
+			不是灯红酒绿的街头
+		</p>	
+		<p>	
+			或许剩下的也只有</br>
+			虐人揪心却毫无意义的宫廷剧
+		</p>	
+		<p>	
+			其实</br>
+			在这个寂寞无聊的夜晚</br>
+			悄悄告诉你</br>
+			这里有更多故事</br>
+			游戏、美女。。。</br>
+			等你来哟！
+		</p>
+		
+		<div class="code_pic">
+			<img alt="" src="imgs/wx_20180409143533.jpg" class="code">
+		</div>
+		<div class="lbl">
+			<label>扫描二维码、关注公众号</label>
+		</div>
+		
+		<div class="car_pic">
+			<img alt="" src="imgs/1.gif">
+		</div>
+		<div class="info">
+			<p>
+			我是朵朵</br>
+			我想唱歌给你听，哪怕天会下雨
+			</p>
+			<div class="girls_one">
+				<img alt="" src="imgs/2.png">
+			</div>
+		</div>
+		
+		<div class="car_pic">
+			<img alt="" src="imgs/1.gif">
+		</div>
+		<div class="info">
+			<p>
+			我是羚羚女神</br>
+			我想跳舞给你看，哪怕日夜白昼
+			</p>
+			<div class="girls_one">
+				<img alt="" src="imgs/3.png">
+			</div>
+		</div>
+		
+		<div class="code_pic">
+			<img alt="" src="imgs/wx_20180409143533.jpg" class="code">
+		</div>
+		<div class="lbl">
+			<label>扫描二维码、关注公众号</label>
+		</div>
+		
+		<div class="car_pic">
+			<img alt="" src="imgs/1.gif">
+		</div>
+		<div class="info">
+			<p>
+			我是夏悠悠</br>
+			我想与你一起玩游戏
+			</p>
+			<div class="girls_one">
+				<img alt="" src="imgs/4.png">
+			</div>
+		</div>
+		
+		<div class="click_code">
+			<p>
+				动动你的手指</br>
+				点击扫描二维码</br>
+				关注公众号和美女一起聊天</br>
+				一起游戏吧</br>
+				等你哦
+			</p>
+		</div>
+		
+		<div class="code_pic">
+			<img alt="" src="imgs/wx_20180409143533.jpg" class="code">
+		</div>
+		<div class="lbl">
+			<label>扫描二维码、关注公众号</label>
+		</div>
+	</div>
+</body>
+</html>

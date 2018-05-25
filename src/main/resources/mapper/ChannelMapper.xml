@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dlg.wxsend.dao.ChannelDao">
+	<!-- 新增渠道 -->
+	<insert id="addChannel" parameterType="com.dlg.wxsend.bean.Channel" keyProperty="channel.channelId" flushCache="true">
+		insert into 
+				channel_tb(
+						name,
+						phone,
+						create_date)
+				VALUES(
+						#{channel.name},
+						#{channel.phone},
+						#{channel.createDate})
+		
+	</insert>
+	
+	<!-- 根据channelId修改渠道 -->
+	<update id="updateChannel" parameterType="com.dlg.wxsend.bean.Channel">
+		update 
+				channel_tb 
+			set 
+				link=#{channel.link} 
+			where 
+				channel_id=#{channel.channelId}             
+	</update>
+	
+	<!-- 查询所有渠道 -->
+	<select id="getChannelList" resultType="com.dlg.wxsend.bean.Channel">
+		select
+				channel_id,
+				name,
+				phone,
+				create_date
+	     from
+	     		channel_tb
+	</select>
+	
+	<!-- 根据channelId查询渠道 -->
+	<select id="getChannelByChannelId" resultType="com.dlg.wxsend.bean.Channel">
+		select
+				channel_id,
+				name,
+				phone,
+				create_date
+	     from
+	     		channel_tb
+	     where  
+	     		channel_id=#{channelId}
+	</select>
+	
+	<!-- 根据phone查询是否存在 -->
+	<select id="getCountByPhone" parameterType="java.lang.String" resultType="java.lang.Integer">
+		select
+				count(phone)
+	     from
+	     		channel_tb
+	     where  
+	     		phone=#{phone}
+	</select>
+</mapper>

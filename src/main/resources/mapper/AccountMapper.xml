@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dlg.wxsend.dao.AccountDao">
+	<!-- 根据账号(phone)查询Account -->
+	<select id="getAccountByPhone" resultType="com.dlg.wxsend.bean.Account">
+		select 
+			account_id,
+			name,
+			phone,
+			password,
+			status,
+			role_id,
+			role_name,
+			create_date 
+		from 
+			account_tb 
+		where 
+			phone=#{phone};
+	</select>
+	
+	<!-- 新增渠道账号 -->
+	<insert id="addAccount" parameterType="com.dlg.wxsend.bean.Account">
+		insert into 
+				account_tb(
+						name,
+						phone,
+						password,
+						status,
+						role_id,
+						role_name,
+						create_date)
+				values(
+						#{account.name},
+						#{account.phone},
+						#{account.password},
+						#{account.status},
+						#{account.roleId},
+						#{account.roleName},
+						#{account.createDate})
+	</insert>
+</mapper>

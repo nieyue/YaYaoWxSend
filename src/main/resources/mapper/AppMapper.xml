@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dlg.wxsend.dao.AppDao">
+	<!-- 新增公众号 -->
+	<insert id="addApp" parameterType="com.dlg.wxsend.bean.App">
+		insert into 
+				app_tb(
+							app_id,
+							secret,
+							app_name,
+							status,
+							create_date)
+					VALUEs(
+							#{app.appId},
+							#{app.secret},
+							#{app.appName},
+							#{app.status},
+							#{app.createDate})
+	</insert>
+	
+	<!-- 查询公众号 -->
+	<select id="getApp" resultType="com.dlg.wxsend.bean.App">
+		select 
+			pub_app_id,
+			app_id,
+		<!-- secret,-->
+			app_name,
+			status,
+			create_date
+		from 
+			app_tb
+	</select>
+	
+	<!-- 根据appId查询公众号 -->
+	<select id="getAppByAppId" parameterType="java.lang.String" resultType="com.dlg.wxsend.bean.App">
+		select 
+			pub_app_id,
+			app_id,
+			secret,
+			app_name,
+			status,
+			create_date
+		from 
+			app_tb
+		where 
+			app_id=#{appId}
+	</select>
+	
+	<!-- 根据状态查询公众号 -->
+	<select id="getAppByStatus" resultType="com.dlg.wxsend.bean.App">
+		select 
+			pub_app_id,
+			app_id,
+			secret,
+			app_name,
+			status,
+			create_date 
+		from 
+			app_tb 
+		where 
+			status=#{status}
+	</select>
+	
+	<!-- 根据状态更新状态 -->
+	<update id="updateAppByStatus" parameterType="java.lang.Integer">
+		update 
+			app_tb 
+		set 
+			status=#{newStatus}
+		where 
+			status=#{oldStatus}
+	</update>
+	
+	<!-- 根据appId更新状态  -->
+	<update id="updateStatusById" parameterType="java.lang.Integer">
+		update 
+			app_tb 
+		set 
+			status=#{status}
+		where 
+			pub_app_id=#{pubAppId}
+	</update>
+	
+</mapper>

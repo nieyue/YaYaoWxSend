@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dlg.wxsend.dao.TempUserDao">
+	<!-- 新增 -->
+	<insert id="addTempUser" parameterType="com.dlg.wxsend.bean.TempUser">
+		insert into 
+				temp_user_tb(
+							open_id,
+							app_id,
+							channel_id,
+							phone,
+							app_name,
+							create_date)
+					values(
+							#{tempUser.openId},
+							#{tempUser.appId},
+							#{tempUser.channelId},
+							#{tempUser.phone},
+							#{tempUser.appName},
+							#{tempUser.createDate}
+							)
+	</insert>
+	
+	<!-- 根据openId和appid查询数量(联合主键、去重) -->
+	<select id="getCount" parameterType="java.lang.String" resultType="java.lang.Integer">
+		select 
+				count(*) 
+			from 
+				temp_user_tb
+			where 
+				open_id=#{openId}
+			and 	
+				app_id=#{appid}			
+	</select>
+	
+	<!-- 根据openId和appid查询(联合主键) -->
+	<select id="getTempUser" parameterType="java.lang.String" resultType="com.dlg.wxsend.bean.TempUser">
+		select 
+				open_id,
+				app_id,
+				channel_id,
+				phone,
+				app_name,
+				create_date
+			from 
+				temp_user_tb
+			where 
+				open_id=#{openId}
+			and 	
+				app_id=#{appid}		
+	</select>
+	
+</mapper>

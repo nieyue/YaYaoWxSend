@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.dlg</groupId>
+	<artifactId>YaYaoWxSend</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
+	<name>YaYaoWxSend</name>
+	<description></description>
+
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		 <version>2.0.1.RELEASE</version> 
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<java.version>1.8</java.version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+		 	<groupId>org.quartz-scheduler</groupId>
+		 	<artifactId>quartz</artifactId>
+		 	<version>2.2.1</version>
+		</dependency>
+		<dependency>
+            <groupId>org.quartz-scheduler</groupId>
+            <artifactId>quartz-jobs</artifactId>
+            <version>2.2.1</version>
+        </dependency>
+	
+		 <!-- Ggson -->
+		<!--<dependency>
+		    <groupId>com.google.code.gson</groupId>
+		    <artifactId>gson</artifactId>
+		</dependency> --> 
+		
+		<!-- Json-lib -->
+		<dependency>
+		    <groupId>net.sf.json-lib</groupId>
+		    <artifactId>json-lib</artifactId>
+		    <classifier>JDK15</classifier>
+		    <version>2.2.3</version>
+		</dependency>
+
+		<!-- httpClient -->
+		<dependency>
+              <groupId>org.apache.httpcomponents</groupId>
+              <artifactId>httpclient</artifactId>
+             <version>4.5</version>
+         </dependency>
+        <dependency>
+             <groupId>org.apache.httpcomponents</groupId>
+              <artifactId>httpcore</artifactId>
+             <version>4.4.4</version>
+         </dependency>
+         <dependency>
+             <groupId>org.apache.httpcomponents</groupId>
+             <artifactId>httpmime</artifactId>
+             <version>4.5</version>
+         </dependency>
+		
+		<!-- pageHelper分页插件 -->
+	  	<dependency>  
+		    <groupId>com.github.pagehelper</groupId>  
+		    <artifactId>pagehelper</artifactId>  
+		    <version>5.0.0</version>  
+		</dependency> 
+		
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-aop</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.mybatis.spring.boot</groupId>
+			<artifactId>mybatis-spring-boot-starter</artifactId>
+			<version>1.3.2</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-jdbc</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		
+		<dependency>
+		    <groupId>junit</groupId>
+		    <artifactId>junit</artifactId>
+		    <!-- 表示开发的时候引入，发布的时候不会加载此包 -->
+		    <scope>test</scope>
+		</dependency>
+		
+		<!-- 热启动，热部署依赖包 -->  
+        <dependency>  
+            <groupId>org.springframework.boot</groupId>  
+            <artifactId>spring-boot-devtools</artifactId>  
+            <optional>true</optional>  
+        </dependency>
+	</dependencies>
+
+	<build>
+		<finalName>YaYaoWxSend</finalName>
+		<plugins>
+		<!-- 热启动，热部署依赖插件 --> 
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				 <configuration>  
+                    <fork>true</fork> 
+                </configuration>
+			</plugin>
+			<plugin>  
+		        <groupId>org.apache.maven.plugins</groupId>  
+		        <artifactId>maven-surefire-plugin</artifactId>  
+		        <configuration>  
+		          <skipTests>true</skipTests>  
+        		</configuration>  
+     		 </plugin> 
+		</plugins>
+	</build>
+	<repositories>  
+        <repository>  
+            <id>spring-milestone</id>  
+            <url>http://repo.spring.io/libs-release</url>  
+        </repository>  
+    </repositories> 
+
+</project>
